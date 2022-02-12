@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:lapidado/view/loading/loading.dart';
 class Controller extends GetxController{
 
   //Controllers For TextFields
@@ -11,5 +12,7 @@ class Controller extends GetxController{
 
   RxBool imageIsSelected=false.obs;
   RxString base64ImageSelected="".obs;
+
+  Loading loading=Loading();
 
 }

@@ -7,7 +7,7 @@ class ScheduleController{
 markSchedule(Schedule schedule)async {
 try{
  print(schedule.toJson());
- var response=await Requests(endpoint: "null").postRequest();
+ var response=await Requests("null").postRequest(({}));
 
 
 }catch(e){

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:lapidado/Constants/constants.dart';
 import 'package:lapidado/controllers/enums.dart';
 import 'package:lapidado/interfaces/schedule_interface.dart';
@@ -17,6 +18,9 @@ class DoSchedule extends StatefulWidget {
 
 class _DoScheduleState extends State<DoSchedule> {
   var whereSelected = whereSchedule.myhome;
+  TextEditingController selectedDateController=TextEditingController();
+  TextEditingController selectedTimeController=TextEditingController();
+
   Schedule marking=Schedule();
   @override
   Widget build(BuildContext context) {
@@ -41,12 +45,15 @@ class _DoScheduleState extends State<DoSchedule> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          "Agendar Corte de Cabelo",
-                          style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 25,
-                              color: Colors.white),
+                        Container(
+                          width: Get.width*0.8,
+                          child: Text(
+                            "Agendar Corte de Cabelo",
+                            style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 22,
+                                color: Colors.white),
+                          ),
                         ),
                       ],
                     ),
@@ -66,15 +73,18 @@ class _DoScheduleState extends State<DoSchedule> {
                   children: [
                     Container(
                       width: Get.width * 0.43,
-                      child: CustomInput().textFields(label: "Data"),
+                      child: CustomInput().textFields(label: "Data",controller: selectedDateController),
                     ),
                     TextButton(
                         onPressed: ()async {
                        var data=   await showDatePicker(
 
                            context: context, initialDate: DateTime.now(), firstDate: DateTime.now(), lastDate: DateTime(2023));
-if(data!=null) marking.markedDate=data.toIso8601String();
+if(data!=null) {
+  marking.markedDate=data.toIso8601String();
+  selectedDateController.text=DateFormat("dd-MM-yyy").format(data);
 
+}
                         },
                         child: Text(
                           "Selecionar Data",
@@ -92,12 +102,13 @@ if(data!=null) marking.markedDate=data.toIso8601String();
                   children: [
                     Container(
                       width: Get.width * 0.43,
-                      child: CustomInput().textFields(label: "Horário"),
+                      child: CustomInput().textFields(label: "Horário",controller: selectedTimeController),
                     ),
                     TextButton(
                         onPressed: () async{
                           var time=await showTimePicker(context: context, initialTime: TimeOfDay.now());
 if(time!=null) marking.markedTime=time.toString();
+selectedTimeController.text=time!.format(context);
                         },
                         child: Text(
                           "Selecionar Hora",

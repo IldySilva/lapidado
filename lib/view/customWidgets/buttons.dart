@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lapidado/Constants/constants.dart';
@@ -27,11 +28,11 @@ class CustomButtons {
     return Container(
       decoration: BoxDecoration(
 
-          border: Border.all(
-            color: CustomColors().azul,
-          ),
-          borderRadius: BorderRadius.circular(8),
-       ),
+        border: Border.all(
+          color: CustomColors().azul,
+        ),
+        borderRadius: BorderRadius.circular(8),
+      ),
       width: Get.width,
       height: Get.height * 0.08,
       child: TextButton(
@@ -45,29 +46,27 @@ class CustomButtons {
   }
 
   homeScreenButton({required label, onPress, icon}) {
-    return Material(
-      type: MaterialType.canvas,
-      borderOnForeground: true,
-      color: CustomColors().azul,
-      borderRadius: BorderRadius.circular(8),
+    return InkWell(
+      splashColor: CustomColors().vermelha,
+      onTap: onPress,
+      child: Container(
+        decoration: BoxDecoration(color: CustomColors().azul,
+            borderRadius: BorderRadius.circular(8),
+            boxShadow: CustomDecorations().shadows),
+        width: Get.width * 0.35,
+        height: Get.height * .18,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
 
-      child: InkWell(
-
-
-        onTap: (){},
-        child: Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              boxShadow: CustomDecorations().shadows),
-          width: Get.width * 0.4,
-          height: Get.height * .24,
-          child: TextButton(
-            child: Text(
+            Icon(icon ?? Icons.miscellaneous_services_rounded,
+              color: Colors.white30,),
+            SizedBox(height: Get.height * 0.02,),
+            Text(
               label,
               style: TextStyle(color: Colors.white),
             ),
-            onPressed: onPress,
-          ),
+          ],
         ),
       ),
     );
