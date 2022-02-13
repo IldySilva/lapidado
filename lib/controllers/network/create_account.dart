@@ -1,32 +1,36 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:lapidado/Constants/constants.dart';
 import 'package:lapidado/controllers/requests.dart';
+import 'package:lapidado/controllers/viewController/controller.dart';
 import 'package:lapidado/view/responses/responses.dart';
 
 class CreateAccount {
   createAccount(user, context) async {
     try {
       controller.loading.showLoading(context);
-      var response = await Requests("createAccount").postRequest(user.toJson());
+      var response = await Requests("createAccount").postRequest(jsonEncode(user.toJson()));
       print(response.body);
       if (response.statusCode == 200) {
-        controller.loading.disposeLoading(context);
-        controller.loading.disposeLoading(context);
-        UIResponses().sucess("Maravilha,Conta criada com sucesso");
+        controller.loading.disposeLoading();
+        controller.loading.disposeLoading();
+        UIResponses().sucess("Muito Bem,Conta criada com sucesso");
+        resetController();
       } else {
-        controller.loading.disposeLoading(context);
-
-        UIResponses().sucess("Falha ao Criar conta");
+        controller.loading.disposeLoading();
+        UIResponses().fail("Falha ao Criar conta");
       }
     }
     on SocketException{
+      controller.loading.disposeLoading();
+
       UIResponses().interneError();
     }
     catch (e) {
-      controller.loading.disposeLoading(context);
-
-      UIResponses().sucess("Erro interno");
+      controller.loading.disposeLoading();
+print(e);
+      UIResponses().fail("Erro interno");
     }
   }
 }

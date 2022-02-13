@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lapidado/Constants/constants.dart';
-import 'package:lapidado/view/Authentication/login.dart';
+import 'package:lapidado/view/Authentication/login_screen.dart';
 import 'package:lapidado/view/customWidgets/buttons.dart';
 import 'package:lapidado/view/customWidgets/input.dart';
 import 'package:lapidado/view/do_schedule/do_schedule.dart';
+import 'package:lapidado/view/home/dialogs.dart';
 import 'package:lapidado/view/user_profile/user_profile.dart';
 
 import 'drawer.dart';
@@ -40,7 +41,7 @@ class HomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Olá\nDácio da Costa",
+                          "Olá\n${controller.final_user.username}",
                           style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 25,
@@ -121,9 +122,7 @@ class HomeScreen extends StatelessWidget {
                     CustomButtons().homeScreenButton(label: "Definições"),
                     CustomButtons().homeScreenButton(
                         label: "Terminar Sessão",
-                        onPress: () => Get.off(
-                              LoginScreen(),
-                            ),
+                        onPress: () => Dialogs().confirmLogout(),
                         icon: Icons.logout),
                   ],
                 )

@@ -5,7 +5,7 @@ import 'package:lapidado/interfaces/auth_interfaces.dart';
 import 'package:lapidado/view/customWidgets/buttons.dart';
 import 'package:lapidado/view/customWidgets/decoration.dart';
 import 'package:lapidado/view/customWidgets/input.dart';
-import 'package:lapidado/view/register/register_screen.dart';
+import 'package:lapidado/view/Authentication/register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -33,10 +33,10 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           CustomDecorations().space(10),
           CustomInput().textFields(
-              label: "Telefone", controller: controller.phoneEditingController),
+              label: "Telefone", controller: controller.phoneEditingController,icon:Icons.phone_android),
           CustomDecorations().space(2),
           CustomInput().textFields(
-              label: "Senha", controller: controller.pwdEditingController),
+              label: "Senha", controller: controller.pwdEditingController,icon:Icons.security_outlined),
           CustomDecorations().space(3),
           CustomButtons().mainButton(
               label: "Entrar",

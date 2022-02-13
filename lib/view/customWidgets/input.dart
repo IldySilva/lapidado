@@ -4,7 +4,9 @@ import 'package:get/get.dart';
 import 'package:lapidado/view/customWidgets/decoration.dart';
 
 class CustomInput {
-  textFields({label, controller,icon}) {
+
+  textFields({label, controller,icon,obscureText,keys}) {
+
     return Container(
 padding: EdgeInsets.only(left: Get.width*0.03),
       decoration: BoxDecoration(
@@ -13,8 +15,12 @@ padding: EdgeInsets.only(left: Get.width*0.03),
           borderRadius: BorderRadius.circular(8),
           color: Colors.grey.shade100),
       child: TextField(
+        keyboardType: keys,
+textInputAction: TextInputAction.next,
+        obscureText: obscureText??false,
         controller: controller,
         decoration: InputDecoration(
+
           prefixIcon: Icon(icon),
             labelText: label ?? "Digite", border:InputBorder.none),
       ),

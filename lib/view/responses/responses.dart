@@ -15,7 +15,7 @@ class UIResponses{
   }
   interneError(){
 
-    return Get.rawSnackbar(message: "Falha,Verifique a sua conexão a internet",backgroundColor: Colors.green);
+    return Get.rawSnackbar(message: "Falha,Verifique a sua conexão a internet",backgroundColor: Colors.red);
 
   }
 }

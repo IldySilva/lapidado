@@ -20,7 +20,7 @@ class Loading{
     });
   }
 
-  setLoading(context)=>showLoading(Get.context);
-  disposeLoading(context)=>Navigator.pop(Get.context!);
+  setLoading()=>showLoading(Get.context);
+  disposeLoading()=>Navigator.pop(Get.context!);
 
 }
