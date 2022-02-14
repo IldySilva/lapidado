@@ -20,6 +20,8 @@ class Controller extends GetxController{
 
   User final_user=User();
 
+  var mapController;
+
 }
 resetController(){
   controller.locationEditingController.clear();

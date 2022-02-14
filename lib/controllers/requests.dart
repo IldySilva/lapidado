@@ -6,7 +6,8 @@ class Requests {
   var endpoint;
 
   final baseUrl="http://10.0.2.2:8000/api/";
-
+  //https://lapidadoapi.herokuapp.com/
+ // final baseUrl="http://10.0.2.2:8000/api/";
   Requests(this.endpoint);
 
   Future<http.Response> postRequest(dados) async {
@@ -15,4 +16,11 @@ class Requests {
     }),).timeout(Duration(seconds: 30));
     return response;
   }
+  Future<http.Response> deleteRequest(documentId) async {
+    var response = await http.delete(Uri.parse( baseUrl+ endpoint +"="+documentId), headers: ({
+      "content-type": "application/json",
+    }),).timeout(Duration(seconds: 30));
+    return response;
+  }
+
 }

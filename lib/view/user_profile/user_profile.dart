@@ -47,13 +47,13 @@ class UserProfileScreen extends StatelessWidget {
           )
 ,
           SizedBox(height: Get.height*0.03,),
-          Text("Dácio da Costa",style: TextStyle(fontWeight: FontWeight.w600,color: Colors.white,fontSize: Get.height*0.03),),
+          Text(controller.final_user.username,style: TextStyle(fontWeight: FontWeight.w600,color: Colors.white,fontSize: Get.height*0.03),),
           SizedBox(height: Get.height*0.02,),
 
           SizedBox(height: Get.height*0.03,),
-          Card(child: ListTile(leading: Icon(Icons.location_on,color: CustomColors().azul,),title: Text("Viana,Luanda Sul"),subtitle: Text("Residência"),)),
-          Card(child: ListTile(leading: Icon(Icons.done,color: CustomColors().azul,),title: Text("05"),subtitle: Text("Agendas Concluidas"),))
-       ,   Card(child: ListTile(leading: Icon(Icons.phone_android_rounded,color: CustomColors().azul,),title: Text("990 349 492"),subtitle: Text("Telefone"),))
+          Card(child: ListTile(leading: Icon(Icons.location_on,color: CustomColors().azul,),title: Text(controller.final_user.location??"Indefinida"),subtitle: Text("Residência"),)),
+          Card(child: ListTile(leading: Icon(Icons.done,color: CustomColors().azul,),title: Text("0"),subtitle: Text("Agendas Concluidas"),))
+       ,   Card(child: ListTile(leading: Icon(Icons.phone_android_rounded,color: CustomColors().azul,),title: Text(controller.final_user.phoneNumber),subtitle: Text("Telefone"),))
 ,Expanded(child: Container(),)
           ,  TextButton(onPressed: (){}, child: Text("Editar Dados",style: TextStyle(color: Colors.black),)),SizedBox(height: Get.height*0.03,),
         ]),

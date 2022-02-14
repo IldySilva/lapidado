@@ -29,7 +29,7 @@ class CustomButtons {
       decoration: BoxDecoration(
 
         border: Border.all(
-          color: CustomColors().azul,
+          color: Colors.white,
         ),
         borderRadius: BorderRadius.circular(8),
       ),
@@ -38,7 +38,7 @@ class CustomButtons {
       child: TextButton(
         child: Text(
           label,
-          style: TextStyle(color: CustomColors().azul),
+          style: TextStyle(color: Colors.white),
         ),
         onPressed: onPress,
       ),
@@ -53,8 +53,8 @@ class CustomButtons {
         decoration: BoxDecoration(color: CustomColors().azul,
             borderRadius: BorderRadius.circular(8),
             boxShadow: CustomDecorations().shadows),
-        width: Get.width * 0.35,
-        height: Get.height * .18,
+        width: Get.width * 0.4,
+        height: Get.height * .24,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

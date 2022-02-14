@@ -20,6 +20,7 @@ try{
     var user=User.fromJson(jsonDecode(response.body)["objeto"]);
     controller.final_user=user;
     controller.userIsLogged.value=true;
+
     controller.loading.disposeLoading();
 
 
@@ -30,7 +31,8 @@ try{
 
 
 }catch(e){
-
+  controller.loading.disposeLoading();
+print(e);
   UIResponses().fail("Não foi possivel Acessar,Erro Interno");
 
 }

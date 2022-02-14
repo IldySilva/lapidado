@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lapidado/Constants/constants.dart';
+import 'package:lapidado/interfaces/schedule_interface.dart';
+import 'package:lapidado/models/call.dart';
 import 'package:lapidado/view/Authentication/login_screen.dart';
 import 'package:lapidado/view/customWidgets/buttons.dart';
 import 'package:lapidado/view/customWidgets/input.dart';
@@ -68,10 +70,7 @@ class HomeScreen extends StatelessWidget {
                   spacing: 20,
                   runSpacing: 10,
                   children: [
-                    CustomButtons().homeScreenButton(
-                        label: "Agendar",
-                        onPress: () => Get.to(DoSchedule()),
-                        icon: Icons.schedule_sharp),
+
                     CustomButtons().homeScreenButton(
                         label: "Chamar Barbeiro",
                         icon: Icons.campaign_sharp,
@@ -104,7 +103,13 @@ class HomeScreen extends StatelessWidget {
                                       width: Get.width,
                                       color: CustomColors().azul,
                                       child: TextButton(
-                                          onPressed: () {},
+                                          onPressed: () async {
+                                            Call call=Call();
+                                            call.clientId=controller.final_user.id;
+                                            print(call.toJson());
+                                            await  ISchedule().callBarber(call);
+
+                                          },
                                           child: Text(
                                             "Confirmar",
                                             style:

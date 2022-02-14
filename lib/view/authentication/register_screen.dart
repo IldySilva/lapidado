@@ -99,7 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           obscureText: true),
                       CustomDecorations().space(2),
                       CustomInput().textFields(
-                          label: "País - Provincia -Municipio/Bairro",
+                          label: "Municipio/Bairro",
                           controller: controller.locationEditingController,
                           icon: Icons.location_on),
                       CustomDecorations().space(2),

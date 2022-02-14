@@ -18,7 +18,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   location: ^4.2.0
   http: ^0.13.3
-
+  google_maps_flutter:
+  lottie: ^1.2.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -29,6 +30,7 @@ flutter:
 
   assets:
      - assets/
+     - assets/lotties/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
