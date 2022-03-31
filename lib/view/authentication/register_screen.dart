@@ -9,7 +9,6 @@ import 'package:lapidado/view/Authentication/login_screen.dart';
 import 'package:lapidado/view/customWidgets/buttons.dart';
 import 'package:lapidado/view/customWidgets/decoration.dart';
 import 'package:lapidado/view/customWidgets/input.dart';
-import 'package:lapidado/view/loading/loading.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override

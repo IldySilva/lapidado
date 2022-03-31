@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 class CustomDecorations{
 List<BoxShadow> shadows=[ BoxShadow(
-    color: Colors.grey.withOpacity(0.1), blurRadius: 3, spreadRadius: 2), BoxShadow(
+    color: Colors.grey.withOpacity(0.2), blurRadius: 3, spreadRadius: 3), BoxShadow(
     color: Colors.grey.withOpacity(0.3), blurRadius: 3, spreadRadius: -3)];
 
 space(height){

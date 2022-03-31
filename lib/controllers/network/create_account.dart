@@ -3,8 +3,9 @@ import 'dart:io';
 
 import 'package:lapidado/Constants/constants.dart';
 import 'package:lapidado/controllers/requests.dart';
-import 'package:lapidado/controllers/viewController/controller.dart';
 import 'package:lapidado/view/responses/responses.dart';
+
+import '../../viewController/controller.dart';
 
 class CreateAccount {
   createAccount(user, context) async {

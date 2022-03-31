@@ -2,7 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:lapidado/controllers/viewController/controller.dart';
+
+import '../viewController/controller.dart';
 
 class CustomColors{
 

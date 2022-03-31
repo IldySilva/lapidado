@@ -29,7 +29,7 @@ class CustomButtons {
       decoration: BoxDecoration(
 
         border: Border.all(
-          color: Colors.white,
+          color: Colors.black,
         ),
         borderRadius: BorderRadius.circular(8),
       ),
@@ -38,7 +38,7 @@ class CustomButtons {
       child: TextButton(
         child: Text(
           label,
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.black),
         ),
         onPressed: onPress,
       ),
@@ -46,29 +46,33 @@ class CustomButtons {
   }
 
   homeScreenButton({required label, onPress, icon}) {
-    return InkWell(
-      splashColor: CustomColors().vermelha,
-      onTap: onPress,
-      child: Container(
-        decoration: BoxDecoration(color: CustomColors().azul,
-            borderRadius: BorderRadius.circular(8),
-            boxShadow: CustomDecorations().shadows),
-        width: Get.width * 0.4,
-        height: Get.height * .24,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: InkWell(
+        splashColor: CustomColors().vermelha,
+        onTap: onPress,
+        child: Container(
+          decoration: BoxDecoration(color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+              boxShadow: CustomDecorations().shadows),
+          width: Get.width * 0.34,
+          height: Get.height * .12,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
 
-            Icon(icon ?? Icons.miscellaneous_services_rounded,
-              color: Colors.white30,),
-            SizedBox(height: Get.height * 0.02,),
-            Text(
-              label,
-              style: TextStyle(color: Colors.white),
-            ),
-          ],
+              Icon(icon ?? Icons.miscellaneous_services_rounded,
+                color: Colors.grey,),
+              SizedBox(height: Get.height * 0.02,),
+              Text(
+                label,
+                style: TextStyle(color: CustomColors().vermelha,fontWeight: FontWeight.w600),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
+

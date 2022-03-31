@@ -13,6 +13,7 @@ class Call{
   var clientLongitude;
   var clientLatitude;
   var locationDescription;
+  var wayToPay;
 
   Call(
       {this.isCalling,
@@ -23,6 +24,7 @@ class Call{
         this.clientId,
         this.barberId,
         this.locationDescription,
+        this.wayToPay,
         this.barberLongitude,
         this.barberLatitude,
         this.clientPhoneNumber,
@@ -38,6 +40,7 @@ class Call{
     clientLatitude = json['clientLatitude'];
     clientId = json['clientId'];
     barberId = json['barberId'];
+    id=json["id"];
     locationDescription = json['locationDescription'];
     barberLongitude = json['barberLongitude'];
     barberLatitude = json['barberLatitude'];

@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lapidado/Constants/constants.dart';
 
 class Loading{
 
@@ -10,7 +9,7 @@ class Loading{
   showLoading(context){
 
     return  showDialog(
-        barrierColor: Colors.grey.withOpacity(0.3),
+        barrierColor: Colors.grey.withOpacity(0.7),
         context: context, builder: (context){
 
       return BackdropFilter(

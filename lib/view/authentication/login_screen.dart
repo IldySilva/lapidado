@@ -17,6 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+          backgroundColor: Colors.white,
             body: Padding(
       padding: EdgeInsets.symmetric(horizontal: Get.width * 0.06),
       child: SingleChildScrollView(
@@ -33,10 +34,10 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
           CustomDecorations().space(10),
           CustomInput().textFields(
-              label: "Telefone", controller: controller.phoneEditingController,icon:Icons.phone_android),
+              label: "Telefone", controller: controller.phoneEditingController,icon:Icons.phone_android,keys: TextInputType.phone),
           CustomDecorations().space(2),
           CustomInput().textFields(
-              label: "Senha", controller: controller.pwdEditingController,icon:Icons.security_outlined),
+              label: "Senha", controller: controller.pwdEditingController,icon:Icons.security_outlined,obscureText: true),
           CustomDecorations().space(3),
           CustomButtons().mainButton(
               label: "Entrar",

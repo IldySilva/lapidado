@@ -5,7 +5,7 @@ class UIResponses{
 
   sucess(message){
 
-    return Get.rawSnackbar(message: message,backgroundColor: Colors.green);
+    return Get.rawSnackbar(message: message,backgroundColor: Colors.green,duration: Duration(seconds: 8));
 
   }
   fail(message){

@@ -9,6 +9,8 @@ import 'package:lapidado/view/customWidgets/buttons.dart';
 import 'package:lapidado/view/customWidgets/input.dart';
 import 'package:lapidado/view/do_schedule/my_home_selected.dart';
 
+import '../../helpers/helpers.dart';
+
 class DoSchedule extends StatefulWidget {
   const DoSchedule({Key? key}) : super(key: key);
 
@@ -26,16 +28,15 @@ class _DoScheduleState extends State<DoSchedule> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
+          backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [CustomColors().azul, Colors.white30],
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter)),
+
+
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: Get.width * .07),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
                   children: [
@@ -52,7 +53,7 @@ class _DoScheduleState extends State<DoSchedule> {
                             style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 22,
-                                color: Colors.white),
+                                color: Colors.black),
                           ),
                         ),
                       ],
@@ -72,6 +73,7 @@ class _DoScheduleState extends State<DoSchedule> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
+                      decoration: BoxDecoration(border: Border.all(color: Colors.black),borderRadius: BorderRadius.circular(8)),
                       width: Get.width * 0.43,
                       child: CustomInput().textFields(label: "Data",controller: selectedDateController),
                     ),
@@ -89,7 +91,7 @@ if(data!=null) {
                         child: Text(
                           "Selecionar Data",
                           style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               decoration: TextDecoration.underline),
                         ))
                   ],
@@ -101,6 +103,8 @@ if(data!=null) {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
+                      decoration: BoxDecoration(border: Border.all(color: Colors.black),borderRadius: BorderRadius.circular(8)),
+
                       width: Get.width * 0.43,
                       child: CustomInput().textFields(label: "Horário",controller: selectedTimeController),
                     ),
@@ -113,12 +117,20 @@ selectedTimeController.text=time!.format(context);
                         child: Text(
                           "Selecionar Hora",
                           style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.black,
                               decoration: TextDecoration.underline),
                         ))
                   ],
                 ),  SizedBox(
-                  height: Get.height * 0.02,
+                  height: Get.height * 0.04,
+                ),
+                Text(
+                  "CUSTO DO SERVIÇO:",
+                ),
+                Text(
+                  currencyConverter(controller.selectedHaircut.price,),
+                  style: TextStyle(
+                      color: Colors.greenAccent, fontSize: 28),
                 ),
                 SizedBox(
                   height: Get.height * 0.04,
@@ -153,7 +165,13 @@ selectedTimeController.text=time!.format(context);
                   CustomButtons().mainButton(label: "Agendar",onPress: (){
                     marking.whereIs=whereSelected.toString();
                     marking.locationDescription= controller.localDescController.text;
+                    marking.hairCutName=controller.selectedHaircut.name;
+                    marking.hairCutDesc=controller.selectedHaircut.description;
+                    marking.hairCutPrice=controller.selectedHaircut.price;
+                    marking.hairCutId=controller.selectedHaircut.id;
+                    if(selectedDateController.text.isNotEmpty && selectedTimeController.text.isNotEmpty)
                     ISchedule().markSchedule(marking);
+                    else Get.rawSnackbar(message: "Indique uma data e hora",backgroundColor: Colors.red);
                   }),
                 SizedBox(
                   height: Get.height * 0.02,

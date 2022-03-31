@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lapidado/Constants/constants.dart';
 
+import 'package:url_launcher/url_launcher.dart' as launcher;
+
 class UserProfileScreen extends StatelessWidget {
   const UserProfileScreen({Key? key}) : super(key: key);
 
@@ -11,11 +13,7 @@ class UserProfileScreen extends StatelessWidget {
         child: Scaffold(
             body: Container(
       width: Get.width,
-      decoration: BoxDecoration(
-          gradient: LinearGradient(
-              colors: [CustomColors().azul, Colors.white30],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter)),
+
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: Get.width * .07),
         child: Column(children: [
@@ -27,35 +25,86 @@ class UserProfileScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.arrow_back,
-                      color: Colors.white,
+                      color: Colors.black,
                     ))
               ],
             ),
           ),
-          CircleAvatar(
-            foregroundColor: Colors.white,
-            backgroundColor: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image.asset(
-                "assets/03.png",
+          Container(
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(border: Border.all(color: Colors.black,),borderRadius: BorderRadius.circular(100)),
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              foregroundColor: Colors.black,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset(
+                  "assets/03.png",
+                ),
               ),
+              radius: Get.height * 0.06,
             ),
-            radius: Get.height * 0.06,
-          )
-,
-          SizedBox(height: Get.height*0.03,),
-          Text(controller.final_user.username,style: TextStyle(fontWeight: FontWeight.w600,color: Colors.white,fontSize: Get.height*0.03),),
-          SizedBox(height: Get.height*0.02,),
+          ),
+          SizedBox(
+            height: Get.height * 0.03,
+          ),
+          Text(
+            controller.final_user.username,
+            style: TextStyle(
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+                fontSize: Get.height * 0.03),
+          ),
+          SizedBox(
+            height: Get.height * 0.02,
+          ),
+          SizedBox(
+            height: Get.height * 0.03,
+          ),
+          Card(
+              child: ListTile(
+            leading: Icon(
+              Icons.location_on,
+              color: CustomColors().azul,
+            ),
+            title: Text(controller.final_user.location ?? "Indefinida"),
+            subtitle: Text("Residência"),
+          )),
 
-          SizedBox(height: Get.height*0.03,),
-          Card(child: ListTile(leading: Icon(Icons.location_on,color: CustomColors().azul,),title: Text(controller.final_user.location??"Indefinida"),subtitle: Text("Residência"),)),
-          Card(child: ListTile(leading: Icon(Icons.done,color: CustomColors().azul,),title: Text("0"),subtitle: Text("Agendas Concluidas"),))
-       ,   Card(child: ListTile(leading: Icon(Icons.phone_android_rounded,color: CustomColors().azul,),title: Text(controller.final_user.phoneNumber),subtitle: Text("Telefone"),))
-,Expanded(child: Container(),)
-          ,  TextButton(onPressed: (){}, child: Text("Editar Dados",style: TextStyle(color: Colors.black),)),SizedBox(height: Get.height*0.03,),
+          Card(
+              child: ListTile(
+            leading: Icon(
+              Icons.phone_android_rounded,
+              color: CustomColors().azul,
+            ),
+            title: Text(controller.final_user.phoneNumber),
+            subtitle: Text("Telefone"),
+          )),
+
+          Card(
+              child: ListTile(
+                onTap: ()async {
+                  if(await launcher.canLaunch("https://lapidado.com/privacy"))
+             await       launcher.launch("https://lapidado.com/privacy");
+
+                },
+                leading: Icon(
+                  Icons.info,
+                  color: CustomColors().azul,
+                ),
+                trailing: Icon(Icons.arrow_right),
+                title: Text("Termos & Condições"),
+                subtitle: Text("Detalhes do Apicativo"),
+              )),
+          Expanded(
+            child: Container(),
+          ),
+
+          SizedBox(
+            height: Get.height * 0.03,
+          ),
         ]),
       ),
     )));

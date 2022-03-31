@@ -1,17 +1,48 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lapidado/Constants/constants.dart';
+import 'package:lapidado/helpers/helpers.dart';
 import 'package:lapidado/interfaces/schedule_interface.dart';
 import 'package:lapidado/models/call.dart';
+import 'package:lapidado/view/chat/chatScreen.dart';
 import 'package:lapidado/view/customWidgets/buttons.dart';
 import 'package:lottie/lottie.dart';
 
-class CallingBarber extends StatelessWidget {
+class CallingBarber extends StatefulWidget {
   CallingBarber(this.call);
 
+
   var call = Call();
+
+  @override
+  _CallingBarberState createState() => _CallingBarberState();
+}
+
+class _CallingBarberState extends State<CallingBarber> {
+
+  Timer ?timer;
+  @override
+  void initState() {
+   timer=Timer.periodic(Duration(seconds: 5), (timer) async {
+
+     widget.call=await ISchedule().getCall(widget.call);
+     setState(() {
+
+     });
+   });
+    super.initState();
+  }
+  @override
+  void dispose() {
+    timer!.cancel();
+    super.dispose();
+  }
+
+  var selectedWayToPay="Dinheiro";
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +59,7 @@ class CallingBarber extends StatelessWidget {
                   },
                   myLocationEnabled: true,
                   initialCameraPosition: CameraPosition(
-                      target: LatLng(call.clientLatitude, call.clientLongitude),
+                      target: LatLng(widget.call.clientLatitude, widget.call.clientLongitude),
                       tilt: 18,
                       zoom: 18)),
             ),
@@ -64,10 +95,15 @@ class CallingBarber extends StatelessWidget {
                                   fontWeight: FontWeight.bold),
                             )),
                         SizedBox(
-                          height: Get.height * 0.04,
+                          height: Get.height * 0.02,
                         ),
-                        call.answered == false
-                            ? Text("Ainda Sem Resposta")
+                        widget.call.answered == false
+                            ? Row(
+                              children: [
+                                Icon(Icons.search,color:Colors.green),
+                                Text("Ainda Sem Resposta",style: TextStyle(color: Colors.white),),
+                              ],
+                            )
                             : Card(
                                 child: ListTile(
                                   subtitle: Text("Barber Description"),
@@ -79,40 +115,56 @@ class CallingBarber extends StatelessWidget {
                                       Icons.message,
                                       color: CustomColors().vermelha,
                                     ),
-                                    onPressed: () {},
+                                    onPressed: () {
+
+                                      Get.off(ChatScreen());
+
+                                    },
                                   ),
                                 ),
                               ),
                         SizedBox(
-                          height: Get.height * 0.04,
+                          height: Get.height * 0.02,
                         ),
                         Text(
                           "CUSTO DO SERVIÇO:",
-                          style: TextStyle(color: Colors.white, fontSize: 18),
+                          style: TextStyle(color: Colors.white, fontSize: 14),
                         ),
                         Text(
-                          "4,000,O0 AOA",
+                         currencyConverter(controller.selectedHaircut.price,),
                           style: TextStyle(
                               color: Colors.greenAccent, fontSize: 28),
                         ),
                         SizedBox(
                           height: Get.height * 0.02 ,
                         ),
+
                         Text(
-                          "Total a Pagar:",
-                          style: TextStyle(color: Colors.white, fontSize: 18),
+                          "Metodo de Pagamento:",
+                          style: TextStyle(color: Colors.white, fontSize: 14),
                         ),
-                        Text(
-                          "4,500,O0 AOA",
-                          style: TextStyle(
-                              color: Colors.greenAccent, fontSize: 28),
-                        ),
+                     Card(
+                       child: Padding(
+                         padding: const EdgeInsets.all(8.0),
+                         child: DropdownButton<String>(
+                           underline: SizedBox(),
+                           value: selectedWayToPay,
+                           onChanged: (v)=>setState(()=>selectedWayToPay=v!),
+                           items: [
+
+                          DropdownMenuItem(child: Text("Dinheiro"),value: "Dinheiro",),
+                           DropdownMenuItem(child: Text("Tranferência"),value: "Trenferência",)
+
+                         ],),
+                       ),
+                     ),
                         Expanded(child: Container()),
                         CustomButtons()
                             .secondButton(label: "Cancelar", onPress: () {
-                          ISchedule().cancellCall(call.id);
-
                           Navigator.pop(context);
+                          ISchedule().cancellCall(widget.call.id);
+
+
 
                         })
                       ],

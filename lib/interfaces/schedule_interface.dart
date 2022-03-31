@@ -29,7 +29,7 @@ class ISchedule {
       call.clientLatitude=currentLocation?.latitude;
       call.clientPhoneNumber=controller.final_user.phoneNumber;
 
-      return await ScheduleController().callBarber(call);
+     await ScheduleController().callBarber(call);
     } catch (e) {
       controller.loading.disposeLoading();
 
@@ -49,4 +49,32 @@ class ISchedule {
     }
 
   }
+  getCall(call) async {
+    try {
+
+     return  await ScheduleController().getCall(call);} catch (e)
+    {
+      print(e);
+
+    }
+
+  }
+  getMySchedules() async {
+    try {
+      return await ScheduleController().getmySchedules();
+    } catch (e) {
+      print(e);
+    }
+  }
+    deleteSchedule(Schedule schedule) async {
+      try {
+
+        return  await ScheduleController().deleteSchedule(schedule);} catch (e)
+      {
+        print(e);
+
+      }
+
+
+    }
 }

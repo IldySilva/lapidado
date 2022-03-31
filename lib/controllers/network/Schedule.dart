@@ -23,7 +23,7 @@ class ScheduleController {
 
         UIResponses().sucess(
             "Muito Bem,Acabaste de Agendar uma prestação de serviço,um dos Barbeiros Disponiveis irá entrar em Contacto");
-      }else{
+      } else {
         controller.loading.disposeLoading();
 
         UIResponses().fail("Não foi possivel Efectuar o seu pedido");
@@ -33,20 +33,21 @@ class ScheduleController {
       print(e);
     }
   }
-dynamic callBarber(Call call) async {
+
+  dynamic callBarber(Call call) async {
     try {
-      print(call.toJson());
       var response = await Requests("callBarber")
           .postRequest(jsonEncode(call.toJson()));
 
-      print(response.body);
-      if (response.statusCode == 200) {
 
+      if (response.statusCode == 200) {
         controller.loading.disposeLoading();
-        controller.loading.disposeLoading();
-        call.id= jsonDecode(response.body)["id"];
+        call.id = jsonDecode(response.body)["id"];
+        print(jsonDecode(response.body));
+        print(call.id);
+        call.answered = false;
         Get.to(CallingBarber(call));
-      }else{
+      } else {
         controller.loading.disposeLoading();
         UIResponses().fail("Não foi possivel Efectuar o seu pedido");
       }
@@ -55,20 +56,90 @@ dynamic callBarber(Call call) async {
       print(e);
     }
   }
+
   cancelCallBarber(id) async {
     try {
-
-      var response = await Requests("cancelBarberCall")
+      var response = await Requests("cancelBarberCall?callId")
           .deleteRequest(id);
 
       print(response.body);
       if (response.statusCode == 200) {
-
-      }else{
-
+        UIResponses().sucess("Você cancelou a chamada");
+        print("Remoção bem sucedida");
+      } else {
+        print(response.statusCode);
       }
     } catch (e) {
       print(e);
+    }
+  }
+
+  dynamic getCall(call) async {
+    try {
+      var response = await Requests("getCall?callId")
+          .getRequestWithId(call.id);
+      if (response.statusCode == 200) {
+        print("bem sucedido");
+        var c = Call.fromJson(jsonDecode(response.body)["objeto"]);
+        print(c.answered);
+        return c;
+      } else {
+        print(response.statusCode);
+        return call;
+      }
+    } catch (e) {
+      print("erro");
+      print(e);
+      return call;
+    }
+  }
+
+  dynamic getmySchedules() async {
+    try {
+      controller.listOfSchedules.clear();
+      controller.loadingSchedules.value = true;
+
+      print("getting schedules");
+      var response = await Requests(
+          "getMySchedules?userId=${controller.final_user.id}")
+          .getRequest();
+      if (response.statusCode == 200) {
+        print(response.body);
+        print("bem sucedido");
+        var json = jsonDecode(response.body)["object"];
+        for (var i in json) {
+          var schedule = Schedule.fromJson(i);
+          controller.listOfSchedules.add(schedule);
+        }
+        controller.loadingSchedules.value = false;
+      } else {
+        print(response.statusCode);
+        controller.listOfSchedules.clear();
+
+        controller.loadingSchedules.value = false;
+      }
+    } catch (e) {
+      print(e);
+      controller.listOfSchedules.clear();
+      controller.loadingSchedules.value = false;
+    }
+  }
+
+  deleteSchedule(Schedule schedule) async {
+    print("deletting..");
+    controller.loadingSchedules.value=true;
+    var response = await Requests("deleteSchedule?scheduleId")
+        .deleteRequest(schedule.id);
+    print(response.body);
+    if (response.statusCode == 200) {
+
+      UIResponses().sucess("Registo Apagado com sucesso");
+      getmySchedules();
+    }else{
+      print("Error");
+      UIResponses().fail("Não foi possivel Concluir a acção,erro interno");
+      controller.loadingSchedules.value=false;
+
     }
   }
 }
