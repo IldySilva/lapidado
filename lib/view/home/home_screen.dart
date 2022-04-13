@@ -70,7 +70,15 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Olá\n${controller.final_user.username}",
+                                "Olá\n${controller.final_user.username??"Camarada"}",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 27,
+                                    color: CustomColors().vermelha),
+                              ),
+
+                              if(controller.firstTime.value)   Text(
+                                "Olá\n Camarada",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 27,
@@ -220,7 +228,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               TextButton(
                   onPressed: () {
-                    print(selectedHair);
+
+                      print(selectedHair);
                     selectedHair = false;
 
                     Navigator.pop(context);

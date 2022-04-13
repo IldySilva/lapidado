@@ -11,7 +11,7 @@ class Requests {
   Future<http.Response> postRequest(dados) async {
     var response = await http.post(Uri.parse( baseUrl+ endpoint),body:(dados), headers: ({
     "content-type": "application/json",
-    }),).timeout(Duration(seconds: 30));
+    }),).timeout(Duration(seconds: 40));
     return response;
   }
   Future<http.Response> deleteRequest(documentId) async {

@@ -14,6 +14,7 @@ class Call{
   var clientLatitude;
   var locationDescription;
   var wayToPay;
+  var barberName;
 
   Call(
       {this.isCalling,
@@ -26,6 +27,7 @@ class Call{
         this.locationDescription,
         this.wayToPay,
         this.barberLongitude,
+        this.barberName,
         this.barberLatitude,
         this.clientPhoneNumber,
         this.id,
@@ -34,6 +36,7 @@ class Call{
   Call.fromJson(Map<String, dynamic> json) {
     isCalling = json['isCalling'];
     answered = json['answered'];
+    barberName=json["barberName"];
     clientLongitude = json['clientLongitude'];
     clientPhoneNumber=json["clientPhoneNumber"];
     scheduleDateTime = json['schuduleDateTime'];
@@ -57,6 +60,7 @@ class Call{
     data['clientId'] = this.clientId;
     data["clientPhoneNumber"]=this.clientPhoneNumber;
     data['barberId'] = this.barberId;
+    data["barberName"]=this.barberName;
     data['locationDescription'] = this.locationDescription;
     data['barberLongitude'] = this.barberLongitude;
     data['barberLatitude'] = this.barberLatitude;

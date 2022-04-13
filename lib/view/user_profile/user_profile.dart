@@ -86,8 +86,8 @@ class UserProfileScreen extends StatelessWidget {
           Card(
               child: ListTile(
                 onTap: ()async {
-                  if(await launcher.canLaunch("https://lapidado.com/privacy"))
-             await       launcher.launch("https://lapidado.com/privacy");
+                  if(await launcher.canLaunch("https://lapidado.com/privacy.html"))
+             await       launcher.launch("https://lapidado.com/privacy.html");
 
                 },
                 leading: Icon(

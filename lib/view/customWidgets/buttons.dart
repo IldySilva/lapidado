@@ -24,12 +24,12 @@ class CustomButtons {
     );
   }
 
-  secondButton({required label, onPress}) {
+  secondButton({required label, onPress,color}) {
     return Container(
       decoration: BoxDecoration(
 
         border: Border.all(
-          color: Colors.black,
+          color: color??Colors.black,
         ),
         borderRadius: BorderRadius.circular(8),
       ),
@@ -38,7 +38,7 @@ class CustomButtons {
       child: TextButton(
         child: Text(
           label,
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color:  color??Colors.black,),
         ),
         onPressed: onPress,
       ),

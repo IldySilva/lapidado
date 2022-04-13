@@ -14,7 +14,7 @@ dependencies:
   flutter:
     sdk: flutter
   url_launcher:
-  image_picker:
+
   get:
   get_storage:
   intl:

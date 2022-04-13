@@ -1,0 +1,37 @@
+import 'package:get/get.dart';
+import 'package:flutter/material.dart';
+import 'package:lapidado/Constants/constants.dart';
+import 'package:lapidado/models/haircut.dart';
+import 'package:lapidado/models/sheduleMark.dart';
+import 'package:lapidado/models/user.dart';
+import 'package:lapidado/view/loading/loading.dart';
+class Controller extends GetxController{
+
+  //Controllers For TextFields
+  TextEditingController phoneEditingController=TextEditingController();
+  TextEditingController pwdEditingController=TextEditingController();
+  TextEditingController locationEditingController=TextEditingController();
+  TextEditingController nameEditingController=TextEditingController();
+  TextEditingController localDescController=TextEditingController();
+
+  RxBool imageIsSelected=false.obs;
+  RxString base64ImageSelected="".obs;
+  RxBool userIsLogged=false.obs;
+
+  RxBool loadingSchedules=false.obs;
+  Loading loading=Loading();
+List<Schedule> listOfSchedules=[];
+  User final_user=User();
+
+  var mapController;
+
+  RxBool firstTime=true.obs;
+  Haircut selectedHaircut=Haircut();
+
+}
+resetController(){
+  controller.locationEditingController.clear();
+controller.nameEditingController.clear();
+controller.localDescController.clear();
+
+}
