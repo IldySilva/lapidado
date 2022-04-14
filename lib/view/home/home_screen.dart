@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -22,8 +21,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-
-
   var scaffoldKey = GlobalKey<ScaffoldState>();
 
   bool selectedHair = false;
@@ -70,20 +67,20 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Olá\n${controller.final_user.username??"Camarada"}",
+                                "Olá\n${controller.final_user.username ?? "Camarada"}",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     fontSize: 27,
                                     color: CustomColors().vermelha),
                               ),
-
-                              if(controller.firstTime.value)   Text(
-                                "Olá\n Camarada",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 27,
-                                    color: CustomColors().vermelha),
-                              ),
+                              if (controller.firstTime.value)
+                                Text(
+                                  "Olá\n Camarada",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 27,
+                                      color: CustomColors().vermelha),
+                                ),
                             ],
                           ),
                           SizedBox(
@@ -116,63 +113,63 @@ class _HomeScreenState extends State<HomeScreen> {
                               onPress: () async {
                                 await _selectHairCut(context);
                                 if (selectedHair == true)
-                                await showDialog(
-                                    context: context,
-                                    builder: (context) {
-                                      return SimpleDialog(
-                                        title: Text("Chamar Barbeiro"),
-                                        contentPadding: EdgeInsets.zero,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  "Os seus dados(Localização,nome e numero de telefone) serão enviados ao nosso sistema.\n\nDesse jeito os Barbeiros que estiverem disponiveis irão atender o seu pedido e entrar em contacto",
-                                                ),
-                                              ],
+                                  await showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return SimpleDialog(
+                                          title: Text("Chamar Barbeiro"),
+                                          contentPadding: EdgeInsets.zero,
+                                          children: [
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Column(
+                                                children: [
+                                                  Text(
+                                                    "Os seus dados(Localização,nome e numero de telefone) serão enviados ao nosso sistema.\n\nDesse jeito os Barbeiros que estiverem disponiveis irão atender o seu pedido e entrar em contacto",
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                          TextButton(
-                                            child: Text(
-                                              "Cancelar",
-                                              style:
-                                                  TextStyle(color: Colors.red),
+                                            TextButton(
+                                              child: Text(
+                                                "Cancelar",
+                                                style: TextStyle(
+                                                    color: Colors.red),
+                                              ),
+                                              onPressed: () =>
+                                                  Navigator.pop(context),
                                             ),
-                                            onPressed: () =>
-                                                Navigator.pop(context),
-                                          ),
-                                          Container(
-                                            width: Get.width,
-                                            color: CustomColors().azul,
-                                            child: TextButton(
-                                                onPressed: () async {
-                                                  Navigator.pop(context);
-                                                  Call call = Call();
-                                                  call.clientId =
-                                                      controller.final_user.id;
-                                                  await ISchedule()
-                                                      .callBarber(call);
-                                                },
-                                                child: const Text(
-                                                  "Confirmar",
-                                                  style: TextStyle(
-                                                      color: Colors.white),
-                                                )),
-                                          ),
-                                        ],
-                                      );
-                                    });
+                                            Container(
+                                              width: Get.width,
+                                              color: CustomColors().azul,
+                                              child: TextButton(
+                                                  onPressed: () async {
+                                                    Navigator.pop(context);
+                                                    Call call = Call();
+                                                    call.clientId = controller
+                                                        .final_user.id;
+                                                    await ISchedule()
+                                                        .callBarber(call);
+                                                  },
+                                                  child: const Text(
+                                                    "Confirmar",
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  )),
+                                            ),
+                                          ],
+                                        );
+                                      });
                               }),
                           CustomButtons().homeScreenButton(
                             label: "Agendar",
                             icon: Icons.schedule,
                             onPress: () async {
                               await _selectHairCut(context);
-                              if (selectedHair == true)
-                              {
+                              if (selectedHair == true) {
                                 Get.to(DoSchedule());
-                              }else{
+                              } else {
                                 print(selectedHair);
                               }
                             },
@@ -228,8 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               TextButton(
                   onPressed: () {
-
-                      print(selectedHair);
+                    print(selectedHair);
                     selectedHair = false;
 
                     Navigator.pop(context);
