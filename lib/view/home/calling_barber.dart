@@ -52,16 +52,16 @@ class _CallingBarberState extends State<CallingBarber> {
               height: Get.height*0.26,
 
               child:   Stack(children: [
-               // GoogleMap(
-               //      onMapCreated: (c) {
-               //        controller.mapController = c;
-               //      },
-               //      myLocationEnabled: true,
-               //      initialCameraPosition: CameraPosition(
-               //          target: LatLng(widget.call.clientLatitude,
-               //              widget.call.clientLongitude),
-               //          tilt: 18,
-               //          zoom: 18)),
+               GoogleMap(
+                    onMapCreated: (c) {
+                      controller.mapController = c;
+                    },
+                    myLocationEnabled: true,
+                    initialCameraPosition: CameraPosition(
+                        target: LatLng(widget.call.clientLatitude,
+                            widget.call.clientLongitude),
+                        tilt: 18,
+                        zoom: 18)),
                 SizedBox(
                   height: Get.height * 0.05,
                 ),

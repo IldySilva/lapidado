@@ -99,19 +99,20 @@ class _HomeScreenState extends State<HomeScreen> {
 
                 Container(height: Get.height*.4,width: Get.width,color: Colors.grey,
 
-                //     child:
-                // GoogleMap(
-                //     zoomControlsEnabled: false,
-                //     myLocationButtonEnabled: false,
-                //     onMapCreated: (c) {
-                //       controller.mapController = c;
-                //     },
-                //     myLocationEnabled: true,
-                //     initialCameraPosition: CameraPosition(
-                //         target: LatLng(controller.final_user.latitude,
-                //             controller.final_user.longitude),
-                //         tilt: 18,
-                //         zoom: 18)),
+                    child:
+                GoogleMap(
+                    zoomControlsEnabled: false,
+                    myLocationButtonEnabled: false,
+                    trafficEnabled: false,
+                    onMapCreated: (c) {
+                      controller.mapController = c;
+                    },
+                    myLocationEnabled: true,
+                    initialCameraPosition: CameraPosition(
+                        target: LatLng(controller.final_user.latitude,
+                            controller.final_user.longitude),
+                        tilt: 18,
+                        zoom: 18)),
                 ),
                 SizedBox(height: Get.height*0.04,),
                 Container(
