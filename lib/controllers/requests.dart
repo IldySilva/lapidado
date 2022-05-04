@@ -3,9 +3,9 @@ import 'package:http/http.dart' as http;
 class Requests {
   var endpoint;
 
-  final baseUrl="https://lapidadoapi.herokuapp.com/api/";
+  //final baseUrl="https://lapidadoapi.herokuapp.com/api/";
   //https://lapidadoapi.herokuapp.com/
- // final baseUrl="http://10.0.2.2:8000/api/";
+ final baseUrl="http://10.0.2.2:8000/api/";
   Requests(this.endpoint);
 
   Future<http.Response> postRequest(dados) async {

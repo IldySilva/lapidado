@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lapidado/Constants/constants.dart';
 import 'package:lapidado/models/haircut.dart';
 import 'package:lapidado/models/sheduleMark.dart';
-import 'package:lapidado/models/user.dart';
+import 'package:lapidado/Domain/Entities/user.dart';
 import 'package:lapidado/view/loading/loading.dart';
 class Controller extends GetxController{
 

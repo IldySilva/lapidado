@@ -45,24 +45,23 @@ class _CallingBarberState extends State<CallingBarber> {
     return SafeArea(
         child: Scaffold(
       body: Container(
-        child: Stack(
+        child: Column(
           children: [
             Container(
-              height: Get.height,
-              child: GoogleMap(
-                  onMapCreated: (c) {
-                    controller.mapController = c;
-                  },
-                  myLocationEnabled: true,
-                  initialCameraPosition: CameraPosition(
-                      target: LatLng(widget.call.clientLatitude,
-                          widget.call.clientLongitude),
-                      tilt: 18,
-                      zoom: 18)),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              width: Get.width,
+              height: Get.height*0.26,
+
+              child:   Stack(children: [
+               // GoogleMap(
+               //      onMapCreated: (c) {
+               //        controller.mapController = c;
+               //      },
+               //      myLocationEnabled: true,
+               //      initialCameraPosition: CameraPosition(
+               //          target: LatLng(widget.call.clientLatitude,
+               //              widget.call.clientLongitude),
+               //          tilt: 18,
+               //          zoom: 18)),
                 SizedBox(
                   height: Get.height * 0.05,
                 ),
@@ -73,108 +72,86 @@ class _CallingBarberState extends State<CallingBarber> {
                     fit: BoxFit.fill,
                   ),
                 ),
-                Container(
-                  width: Get.width,
-                  color: CustomColors().azul.withOpacity(0.9),
-                  height: Get.height * 0.65,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                            width: Get.width * 0.4,
-                            child: Text(
-                              "Estamos a procura do melhor para sí",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold),
-                            )),
-                        SizedBox(
-                          height: Get.height * 0.02,
-                        ),
-                        widget.call.answered == false
-                            ? Row(
-                                children: [
-                                  Icon(Icons.search, color: Colors.green),
-                                  Text(
-                                    "Ainda Sem Resposta",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                ],
-                              )
-                            : Card(
-                                child: ListTile(
-                                  subtitle: Text("Atendeu"),
-                                  title:
-                                      Text(widget.call.barberName ?? "Unnamed"),
-                                  trailing: IconButton(
-                                    icon: Icon(
-                                      Icons.message,
-                                      color: CustomColors().vermelha,
-                                    ),
-                                    onPressed: () {
-                                      Get.off(ChatScreen());
-                                    },
-                                  ),
-                                ),
-                              ),
-                        SizedBox(
-                          height: Get.height * 0.02,
-                        ),
-                        Text(
-                          "CUSTO DO SERVIÇO:",
-                          style: TextStyle(color: Colors.white, fontSize: 14),
-                        ),
-                        Text(
-                          currencyConverter(
-                            controller.selectedHaircut.price,
-                          ),
+
+              ],),
+            ),
+
+            Container(
+              width: Get.width,
+              height: Get.height * 0.6,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                        width: Get.width * 0.6,
+                        child: Text(
+                          "Estamos a procura do melhor para sí",
                           style: TextStyle(
-                              color: Colors.greenAccent, fontSize: 28),
-                        ),
-                        SizedBox(
-                          height: Get.height * 0.02,
-                        ),
-                        Text(
-                          "Metodo de Pagamento:",
-                          style: TextStyle(color: Colors.white, fontSize: 14),
-                        ),
-                        Card(
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: DropdownButton<String>(
-                              underline: SizedBox(),
-                              value: selectedWayToPay,
-                              onChanged: (v) =>
-                                  setState(() => selectedWayToPay = v!),
-                              items: [
-                                DropdownMenuItem(
-                                  child: Text("Dinheiro"),
-                                  value: "Dinheiro",
+                              color: Colors.black,
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold),
+                        )),
+                    SizedBox(
+                      height: Get.height * 0.02,
+                    ),
+                    widget.call.answered == false
+                        ? Row(
+                            children: [
+                              Icon(Icons.search, color: Colors.green),
+                              Text(
+                                "Ainda Sem Resposta",
+                                style: TextStyle(  color: Colors.black54),
+                              ),
+                            ],
+                          )
+                        : Card(
+                            child: ListTile(
+                              subtitle: Text("Atendeu"),
+                              title:
+                                  Text(widget.call.barberName ?? "Unnamed"),
+                              trailing: IconButton(
+                                icon: Icon(
+                                  Icons.message,
+                                  color: CustomColors().vermelha,
                                 ),
-                                DropdownMenuItem(
-                                  child: Text("Tranferência"),
-                                  value: "Trenferência",
-                                )
-                              ],
+                                onPressed: () {
+                                  Get.off(ChatScreen());
+                                },
+                              ),
                             ),
                           ),
-                        ),
-                        Expanded(child: Container()),
-                        CustomButtons().secondButton(
-                            label: "Cancelar",
-                            onPress: () {
-                              Navigator.pop(context);
-                              ISchedule().cancellCall(widget.call.id);
-                            },
-                            color: Colors.white)
-                      ],
+                    SizedBox(
+                      height: Get.height * 0.02,
                     ),
-                  ),
+                    Text(
+                      "CUSTO DO SERVIÇO:",
+                      style: TextStyle(color: Colors.white, fontSize: 14),
+                    ),
+                    Text(
+                      currencyConverter(
+                        controller.selectedHaircut.price,
+                      ),
+                      style: TextStyle(
+                          color: Colors.greenAccent, fontSize: 28),
+                    ),
+                    SizedBox(
+                      height: Get.height * 0.02,
+                    ),
+
+                    Expanded(child: Container()),
+                    CustomButtons().mainButton(
+                        label: "Cancelar",
+                        onPress:() {
+          Navigator.pop(context);
+                  ISchedule().cancellCall(widget.call.id);
+  }
+                        ),
+
+                  ],
                 ),
-              ],
+              ),
             ),
 
 

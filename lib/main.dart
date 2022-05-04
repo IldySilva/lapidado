@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:lapidado/Constants/constants.dart';
-import 'package:lapidado/models/user.dart';
+import 'package:lapidado/Domain/Entities/user.dart';
 import 'package:lapidado/view/home/home_screen.dart';
 
 import 'view/Authentication/login_screen.dart';

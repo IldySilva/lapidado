@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
               GestureDetector(
                   onTap: () => Get.to(RegisterScreen()),
                   child: Text(
-                    "Registe-se",
+                    " Registe-se",
                     style: TextStyle(
                         color: CustomColors().vermelha,
                         fontWeight: FontWeight.w700),

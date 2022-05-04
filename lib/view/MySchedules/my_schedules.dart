@@ -25,8 +25,9 @@ class _MyScheduleState extends State<MySchedule> {
     return SafeArea(
         child: Scaffold(
             appBar: AppBar(
-              title: const Text("Minha Agenda"),
-              backgroundColor: CustomColors().azul,
+              iconTheme: IconThemeData(color: Colors.black),
+              title: const Text("Minha Agenda",style: TextStyle(color: Colors.black)),
+              backgroundColor: Colors.white,
               elevation: 0,
             ),
             body: Obx(
@@ -66,7 +67,7 @@ class _MyScheduleState extends State<MySchedule> {
                                                 DateTime.parse(c.createDate),
                                               ) +
                                               " | " +
-                                              c.markedTime.toString().replaceAll("TimeOfDay(", "").replaceAll(")", " Horas")),
+                                              ( c.markedTime??"Indefinida").toString().replaceAll("TimeOfDay(", "").replaceAll(")", " Horas")),
 
                                           subtitle: Text(c.hairCutName +
                                               " | " +

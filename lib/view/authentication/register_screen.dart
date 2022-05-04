@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:lapidado/Constants/constants.dart';
 import 'package:lapidado/controllers/location.dart';
 import 'package:lapidado/interfaces/auth_interfaces.dart';
-import 'package:lapidado/models/user.dart';
+import 'package:lapidado/Domain/Entities/user.dart';
 import 'package:lapidado/view/Authentication/login_screen.dart';
 
 import 'package:lapidado/view/customWidgets/buttons.dart';

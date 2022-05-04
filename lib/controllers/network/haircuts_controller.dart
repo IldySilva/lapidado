@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:lapidado/Constants/api_controller.dart';
 import 'package:lapidado/Constants/constants.dart';
 import 'package:lapidado/controllers/requests.dart';
 import 'package:lapidado/models/haircut.dart';
@@ -19,7 +18,9 @@ class HairCutsController {
     }
 
     else {
+      controller.loading.disposeLoading();
       UIResponses().fail("Falha ao carregar cortes");
+      return list;
     }
 
     controller.loading.disposeLoading();

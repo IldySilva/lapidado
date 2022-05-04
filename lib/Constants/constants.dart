@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../viewController/controller.dart';
+import '../view/state_manager';
 
 class CustomColors{
 

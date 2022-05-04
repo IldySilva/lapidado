@@ -38,13 +38,11 @@ class ScheduleController {
     try {
       var response = await Requests("callBarber")
           .postRequest(jsonEncode(call.toJson()));
-
-
+print(response.body);
       if (response.statusCode == 200) {
         controller.loading.disposeLoading();
         call.id = jsonDecode(response.body)["id"];
         print(jsonDecode(response.body));
-        print(call.id);
         call.answered = false;
         Get.to(CallingBarber(call));
       } else {
@@ -128,7 +126,7 @@ class ScheduleController {
   deleteSchedule(Schedule schedule) async {
     print("deletting..");
     controller.loadingSchedules.value=true;
-    var response = await Requests("deleteSchedule?scheduleId")
+    var response = await Requests("cancelSchedule?id")
         .deleteRequest(schedule.id);
     print(response.body);
     if (response.statusCode == 200) {

@@ -66,7 +66,7 @@ class CustomButtons {
               SizedBox(height: Get.height * 0.02,),
               Text(
                 label,
-                style: TextStyle(color: CustomColors().vermelha,fontWeight: FontWeight.w600),
+                style: TextStyle(color:Colors.black87,fontWeight: FontWeight.w600),
               ),
             ],
           ),

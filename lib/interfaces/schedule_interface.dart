@@ -29,7 +29,11 @@ class ISchedule {
       call.clientLatitude=currentLocation?.latitude;
       call.clientPhoneNumber=controller.final_user.phoneNumber;
 
-     await ScheduleController().callBarber(call);
+call.selectedPrice=controller.selectedHaircut.price;
+call.serviceDescription=controller.selectedHaircut.description;
+call.clientName=controller.final_user.username;
+
+await ScheduleController().callBarber(call);
     } catch (e) {
       controller.loading.disposeLoading();
 
