@@ -1,84 +1,99 @@
+import 'package:chat_bubbles/chat_bubbles.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lapidado/Constants/constants.dart';
+import 'package:lapidado/controllers/network/FirebaseNetwork.dart';
+import 'package:lapidado/models/call.dart';
 import 'package:lapidado/models/message.dart';
+import 'package:lapidado/view/customWidgets/input.dart';
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({Key? key}) : super(key: key);
+  Call call;
+  ChatScreen(this.call);
 
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  State<ChatScreen> createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  TextEditingController msgController=TextEditingController();
 
-  TextEditingController messageController = TextEditingController();
-  ScrollController listController = ScrollController();
-  var eu;
-  var outro;
-  var outroName;
-
-  List<Message>msgs=[
-
-
-
-  ];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Scaffold(
-              appBar: AppBar(
-                centerTitle: true,
-                iconTheme: IconThemeData(color: Colors.black),
-                backgroundColor: Colors.white,
-                title: Text(
-                  outroName??"Chat",
-                  style: TextStyle(color: Colors.black),
-                ),
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: CustomColors().azul,
+          centerTitle: true,
+          title: Text(widget.call.barberName + " - Barbeiro"),
+        ),
+        body: Container(
+          height: Get.height,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: StreamBuilder<List<Message>>(
+                    initialData: const [],
+                    stream: FirebaseNetwork().chatStream(widget.call.barberId),
+                    builder: (a, snapshot) {
+                      if (snapshot.hasError) {
+                        return Text('Algo de errado aconteceu,reinicie');
+                      }
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(child: const CircularProgressIndicator());
+                      }
+                      if(snapshot.data!.isEmpty)
+                        return Center(child: Text("Mensagens"),);
+                      return SingleChildScrollView(child: Column(children: [
+
+                        SizedBox(height: Get.height*0.03,),
+                        for(Message c in snapshot.data??[])
+                          BubbleSpecialThree(
+                            text: c.text,
+
+                            color:c.author!=widget.call.clientId? CustomColors().azul:Colors.grey,
+                            tail: false,
+                            isSender: c.author==widget.call.clientId,
+                            textStyle: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 16
+                            ),
+
+
+                          )],),);
+                    }),
               ),
-              body: Column(
-                children: [
-                  Expanded(
-                      child:
 
-                        Container(
-                                padding: EdgeInsets.only(
-                                    left: 14, right: 14, top: 10, bottom: 10),
-                                child: Align(
-                                  alignment: (Alignment.topLeft),
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      color:CustomColors().vermelha.withOpacity(0.2)
-                                    ),
-                                    padding: EdgeInsets.all(16),
-                                    child: Text(
-                                     " Mensagens",
-                                      style: TextStyle(fontSize: 15),
-                                    ),
-                                  ),
-                                ),
+              Row(children: [
 
-          )),
+                SizedBox(width: Get.width*.04),
+                Container(width: Get.width*0.7,child:     CustomInput().textFields(label:"Escreve a sua mensagem aqui",controller:  msgController),),
 
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextField(
-                      textInputAction: TextInputAction.send,
-                      onSubmitted: (text) => _sendMessage,
-                      controller: messageController,
-                      decoration: InputDecoration(
-                          suffixIcon: IconButton(
-                              icon: Icon(Icons.send), onPressed: _sendMessage),
-                          hintText: "Escreva Aqui A sua Mensagem"),
-                    ),
-                  )
-                ],
-              )),
-        ));
+                IconButton(onPressed: (){
+                  Message message=Message(text: msgController.text);
+                  _sendMessage(message);
+
+
+                }, icon: Icon(Icons.send,color: Colors.black,)
+                )
+              ],),
+              SizedBox(height: Get.height*0.02,)
+            ],
+          ),
+        ),
+      ),
+    );
   }
-}
-_sendMessage(){
 
+  _sendMessage(Message message){
+    message.author=controller.final_user.id;
+    message.userId=controller.final_user.id;
+    message.prestadorId=widget.call.barberId;
+    message.data=DateTime.now();
+   setState(() {
+     msgController.clear();
+   });
+    FirebaseNetwork().sendMessage(message);
+  }
 }

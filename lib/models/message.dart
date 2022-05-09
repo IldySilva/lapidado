@@ -19,8 +19,8 @@ class Message{
     return ({
       "text":text,
       "author":author,
-      "userId":userId,
-      "prestadorId":prestadorId,
+      "clientId":userId,
+      "barberId":prestadorId,
       "data":data
 
     });

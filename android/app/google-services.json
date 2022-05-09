@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "520738997201",
+    "project_id": "lapidado-c1f50",
+    "storage_bucket": "lapidado-c1f50.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520738997201:android:f4b032b1a0a7bc433c96f0",
+        "android_client_info": {
+          "package_name": "ao.lapidado.lapidado"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520738997201-rvkhtra15hmrt1jr26f2huf3fs3bn4ja.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbzh8Q9jsUtlV7NQLz8arayHmLAx-oO9A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "520738997201-rvkhtra15hmrt1jr26f2huf3fs3bn4ja.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "520738997201-ve1fei84chqmorfrfrhd599rj6j28kj2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.lapidado.lapidadobarber"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520738997201:android:6211b3cd8f2d4a973c96f0",
+        "android_client_info": {
+          "package_name": "com.lapidado.lapidadobarber"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520738997201-rvkhtra15hmrt1jr26f2huf3fs3bn4ja.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbzh8Q9jsUtlV7NQLz8arayHmLAx-oO9A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "520738997201-rvkhtra15hmrt1jr26f2huf3fs3bn4ja.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "520738997201-ve1fei84chqmorfrfrhd599rj6j28kj2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.lapidado.lapidadobarber"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

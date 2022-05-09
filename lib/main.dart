@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -11,7 +12,7 @@ import 'package:lapidado/view/home/home_screen.dart';
 import 'view/Authentication/login_screen.dart';
 
  main() async {
-
+await WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init();
 
   if (Platform.isAndroid) {
@@ -25,6 +26,7 @@ import 'view/Authentication/login_screen.dart';
     controller.userIsLogged.value=true;
 
   }
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
