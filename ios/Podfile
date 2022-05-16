@@ -3,6 +3,7 @@ workspace 'Runner.xcworkspace'
 
 
 pod 'GoogleMaps'
+pod 'cloud_firestore'
 
 target 'Runner' do
   # Comment the next line if you don't want to use dynamic frameworks
