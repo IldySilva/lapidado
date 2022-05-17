@@ -42,7 +42,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "ao.lapidado.lapidado"
+        applicationId "ao.lapidado.business"
         minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()

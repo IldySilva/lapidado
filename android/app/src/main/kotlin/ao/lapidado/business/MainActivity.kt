@@ -1,4 +1,4 @@
-package ao.lapidado.lapidado
+package ao.lapidado.business
 
 import io.flutter.embedding.android.FlutterActivity
 
