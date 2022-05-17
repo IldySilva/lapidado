@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:520738997201:android:f4b032b1a0a7bc433c96f0",
+        "mobilesdk_app_id": "1:520738997201:android:5f9202145ba832673c96f0",
         "android_client_info": {
-          "package_name": "ao.lapidado.lapidado"
+          "package_name": "ao.lapidado.business"
         }
       },
       "oauth_client": [
