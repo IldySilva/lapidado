@@ -3,6 +3,7 @@ workspace 'Runner.xcworkspace'
 
 
 pod 'GoogleMaps'
+pod 'Firebase/Firestore'
 
 
 target 'Runner' do
