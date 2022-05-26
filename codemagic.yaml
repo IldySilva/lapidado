@@ -16,8 +16,6 @@ workflows:
       cocoapods: default
     scripts:
       
-      - flutter build ios
-      - flutter packages pub get
       - git config --global advice.detachedHead false
       - find . -name "Podfile" -execdir pod install \;
       - keychain initialize
